@@ -1,16 +1,17 @@
 const video = document.getElementById("video");
 
 function startVideo() {
-	navigator.mediaDevices.getUserMedia(
-		{
+	navigator.mediaDevices
+		.getUserMedia({
 			video: {},
-		},
-		(stream) => {
-			console.log(stream);
-			video.sourceObject = stream;
-		},
-		(err) => console.error(err)
-	);
+		})
+		.then(
+			(stream) => {
+				video.srcObject = stream;
+				video.play();
+			},
+			(err) => console.error(err)
+		);
 }
 
 startVideo();
